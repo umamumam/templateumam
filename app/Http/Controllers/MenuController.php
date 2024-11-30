@@ -9,25 +9,35 @@ use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $entries = $request->input('entries', 10);
         $menus = Menu::with('module', 'roles', 'children')
-                     ->whereNull('parent_id') 
-                     ->orderBy('order') 
-                    ->get();
-        
+            ->whereNull('parent_id')
+            ->when($request->input('search'), function ($query, $search) {
+                return $query->where('name', 'like', '%' . $search . '%');
+                })
+            ->orderBy('order')
+            ->paginate($entries);
+
+        $menus->appends([
+            'search' => $request->input('search'),
+            'entries' => $entries,
+        ]);
+
         return view('menus.index', compact('menus'));
     }
-    
+
+
 
     public function create()
     {
         $modules = Module::all();
         $roles = Role::all();
-        $menus = Menu::all(); 
+        $menus = Menu::all();
         return view('menus.create', compact('modules', 'roles', 'menus'));
     }
-    
+
     public function store(Request $request)
     {
         $request->validate([
@@ -64,7 +74,7 @@ class MenuController extends Controller
         $menus = Menu::where('id', '!=', $menu->id)->get();
         return view('menus.edit', compact('menu', 'modules', 'roles', 'menus'));
     }
-    
+
 
     public function update(Request $request, Menu $menu)
     {

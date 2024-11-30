@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $roles = Role::all();
+        $entries = $request->input('entries', 10);
+        $roles = Role::when($request->input('search'), function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        })->paginate($entries);
+        $roles->appends([
+            'search' => $request->input('search'),
+            'entries' => $entries,
+        ]);
         return view('roles.index', compact('roles'));
     }
 

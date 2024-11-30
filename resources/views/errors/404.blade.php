@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
-    data-assets-path="../assets/" data-template="vertical-menu-template-free">
+<html lang="en" class="light-style" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
+    data-template="vertical-menu-template-free">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Error - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
     <meta name="description" content="" />
 
@@ -32,63 +32,42 @@
         class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('sneat/assets/css/demo.css') }}" />
 
-
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('sneat/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 
-    <link rel="stylesheet" href="{{ asset('sneat/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
 
     <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="{{ asset('sneat/assets/vendor/css/pages/page-misc.css') }}" />
 
     <!-- Helpers -->
     <script src="{{ asset('sneat/assets/vendor/js/helpers.js') }}"></script>
-
+    
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('sneat/assets/js/config.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">   
+    
 </head>
 
 <body>
-    <!-- Layout wrapper -->
-    <div class="layout-wrapper layout-content-navbar">
-        <div class="layout-container">
-            <!-- Menu -->
+    <!-- Content -->
 
-            @include('layouts.sidebar')
-            <!-- / Menu -->
-
-            <!-- Layout container -->
-            <div class="layout-page">
-                <!-- Navbar -->
-
-                @include('layouts.navbar')
-
-                <!-- / Navbar -->
-
-                <!-- Content wrapper -->
-                <div class="content-wrapper">
-                    <!-- Content -->
-                    @yield('content')
-
-                    <!-- / Content -->
-
-                    <!-- Footer -->
-                    @include('layouts.footer')
-                    <!-- / Footer -->
-
-                    <div class="content-backdrop fade"></div>
-                </div>
-                <!-- Content wrapper -->
+    <!-- Error -->
+    <div class="container-xxl container-p-y">
+        <div class="misc-wrapper">
+            <h2 class="mb-2 mx-2">Page Not Found :(</h2>
+            <p class="mb-4 mx-2">Oops! 😖 The requested URL was not found on this server.</p>
+            <a href="/dashboard" class="btn btn-primary">Back to home</a>
+            <div class="mt-3">
+                <img src="{{ asset('sneat/assets/img/illustrations/page-misc-error-light.png') }}" alt="page-misc-error-light"
+                    width="500" class="img-fluid" data-app-dark-img="illustrations/page-misc-error-dark.png"
+                    data-app-light-img="illustrations/page-misc-error-light.png" />
             </div>
-            <!-- / Layout page -->
         </div>
-
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
     </div>
-    <!-- / Layout wrapper -->
+    <!-- /Error -->
+
+    <!-- / Content -->
 
 
     <!-- Core JS -->
@@ -97,19 +76,16 @@
     <script src="{{ asset('sneat/assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('sneat/assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('sneat/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-
     <script src="{{ asset('sneat/assets/vendor/js/menu.js') }}"></script>
+    
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="{{ asset('sneat/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 
     <!-- Main JS -->
     <script src="{{ asset('sneat/assets/js/main.js') }}"></script>
 
     <!-- Page JS -->
-    <script src="{{ asset('sneat/assets/js/dashboards-analytics.js') }}"></script>
-
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

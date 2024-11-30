@@ -19,12 +19,42 @@ id="layout-navbar">
 
     <ul class="navbar-nav flex-row align-items-center ms-auto">
         <!-- Place this tag where you want the button to render. -->
-        <li class="nav-item lh-1 me-3">
-            <a class="github-button"
-                href="https://github.com/themeselection/sneat-html-admin-template-free"
-                data-icon="octicon-star" data-size="large" data-show-count="true"
-                aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
-        </li>
+        <li class="nav-item lh-1 me-3 dropdown">
+            <!-- Notifikasi Lonceng -->
+            <a class="nav-link" href="#" id="notificationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bx bx-bell fs-3"></i>
+                <span class="badge bg-danger rounded-pill position-absolute" style="top: 1px; right: 1px;">3</span>
+            </a>
+        
+            <!-- Dropdown Notifikasi -->
+            <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="notificationsDropdown" style="min-width: 300px;">
+                <li class="dropdown-header text-center">Notifications</li>
+                <li>
+                    <a class="dropdown-item" href="#">
+                        <i class="bx bx-envelope me-2"></i> New message received
+                        <small class="text-muted d-block text-end">5 mins ago</small>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#">
+                        <i class="bx bx-error-circle me-2"></i> System error detected
+                        <small class="text-muted d-block text-end">30 mins ago</small>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#">
+                        <i class="bx bx-check-circle me-2"></i> Task completed
+                        <small class="text-muted d-block text-end">1 hour ago</small>
+                    </a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li class="text-center">
+                    <a class="dropdown-item text-primary" href="#">View all notifications</a>
+                </li>
+            </ul>
+        </li>        
 
         <!-- User -->
         <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -81,7 +111,10 @@ id="layout-navbar">
                     <div class="dropdown-divider"></div>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="auth-login-basic.html">
+                    <form id="logout-form" action="{{ url('logout') }}" method="GET" style="display: none;">
+                        @csrf
+                    </form>
+                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
                     </a>

@@ -8,9 +8,17 @@ use Illuminate\Http\Request;
 class ModuleController extends Controller
 {
     // Menampilkan daftar modul
-    public function index()
+    public function index(Request $request)
     {
-        $modules = Module::all();
+        $entries = $request->input('entries', 10);
+        $modules = Module::when($request->input('search'), function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        })
+        ->paginate($entries);
+        $modules->appends([
+            'search' => $request->input('search'),
+            'entries' => $entries,
+        ]);
         return view('modules.index', compact('modules'));
     }
 
