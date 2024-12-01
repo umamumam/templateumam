@@ -15,29 +15,29 @@
 
                 <div class="mb-3">
                     <label for="module_id" class="form-label">Module</label>
-                    <div class="input-group input-group-merge">
+                    <div class="input-group">
                         <span class="input-group-text"><i class="bx bx-package"></i></span>
-                        <select name="module_id" id="module_id" class="form-control" required>
-                            <option value="">Select Module</option>
+                        <select name="module_id" id="module_id" class="form-select" required>
+                            <option value="" disabled selected>Select Module</option>
                             @foreach ($modules as $module)
                                 <option value="{{ $module->id }}">{{ $module->name }}</option>
                             @endforeach
                         </select>
                     </div>
-                </div>
+                </div>                
 
                 <div class="mb-3">
                     <label for="parent_id" class="form-label">Parent Menu</label>
-                    <div class="input-group input-group-merge">
+                    <div class="input-group">
                         <span class="input-group-text"><i class="bx bx-menu"></i></span>
-                        <select name="parent_id" id="parent_id" class="form-control">
+                        <select name="parent_id" id="parent_id" class="form-select">
                             <option value="">None (Top Level Menu)</option>
                             @foreach ($menus as $menu)
                                 <option value="{{ $menu->id }}">{{ $menu->name }}</option>
                             @endforeach
                         </select>
                     </div>
-                </div>
+                </div>                
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Menu Name</label>
@@ -75,16 +75,18 @@
 
                 <div class="mb-3">
                     <label for="roles" class="form-label">Assign Roles</label>
-                    <div class="input-group input-group-merge">
+                    <div class="input-group">
                         <span class="input-group-text"><i class="bx bx-user"></i></span>
-                        <select name="roles[]" id="roles" class="form-control" multiple required>
+                        <select name="roles[]" id="roles" class="form-select" multiple required>
                             @foreach ($roles as $role)
                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <small class="form-text text-muted">Hold down the Ctrl (Windows) or Command (Mac) button to select multiple roles.</small>
-                </div>
+                    <div class="form-text">
+                        Hold down the <strong>Ctrl</strong> (Windows) or <strong>Command</strong> (Mac) key to select multiple roles.
+                    </div>
+                </div>                
 
                 <button type="submit" class="btn btn-primary">Create Menu</button>
             </form>

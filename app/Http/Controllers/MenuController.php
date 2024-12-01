@@ -12,21 +12,29 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         $entries = $request->input('entries', 10);
-        $menus = Menu::with('module', 'roles', 'children')
+        $moduleId = $request->input('module_id');
+        $menusQuery = Menu::with('module', 'roles', 'children')
             ->whereNull('parent_id')
+            ->when($moduleId, function ($query) use ($moduleId) {
+                return $query->where('module_id', $moduleId);
+            })
             ->when($request->input('search'), function ($query, $search) {
                 return $query->where('name', 'like', '%' . $search . '%');
-                })
-            ->orderBy('order')
-            ->paginate($entries);
-
+            })
+            ->orderBy('order');
+        $menus = $menusQuery->paginate($entries);
+        $moduleIds = $menus->pluck('module_id')->unique();
+        $modules = Module::whereIn('id', $moduleIds)->get();
+        $uniqueModules = $modules->pluck('name', 'id');
         $menus->appends([
             'search' => $request->input('search'),
             'entries' => $entries,
+            'module_id' => $moduleId,
         ]);
-
-        return view('menus.index', compact('menus'));
+        
+        return view('menus.index', compact('menus', 'uniqueModules', 'modules', 'moduleId'));
     }
+    
 
 
 
