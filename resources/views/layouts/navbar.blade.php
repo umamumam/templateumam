@@ -76,8 +76,8 @@ id="layout-navbar">
                                 </div>
                             </div>
                             <div class="flex-grow-1">
-                                <span class="fw-semibold d-block">John Doe</span>
-                                <small class="text-muted">Admin</small>
+                                <h6 class="mb-0 small">{{ Auth::user()->name ?? 'Guest' }}</h6>
+                                <small class="text-muted">{{ Auth::user()->role->name ?? 'No Role' }}</small>
                             </div>
                         </div>
                     </a>
